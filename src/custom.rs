@@ -76,8 +76,7 @@ use core::{mem::MaybeUninit, num::NonZeroU32};
 #[cfg_attr(docsrs, doc(cfg(feature = "custom")))]
 macro_rules! register_custom_getrandom {
     ($path:path) => {
-        // TODO(MSRV 1.37): change to unnamed block
-        const __GETRANDOM_INTERNAL: () = {
+        const _: () = {
             // We use Rust ABI to be safe against potential panics in the passed function.
             #[no_mangle]
             unsafe fn __getrandom_custom(dest: *mut u8, len: usize) -> u32 {
